@@ -40,7 +40,7 @@
                 </ul>
             </div>
 
-            <a href="{{ route('login') }}" class="btn custom-btn d-lg-block d-none">Buy Ticket</a>
+            <a href="ticket.html" class="btn custom-btn d-lg-block d-none">Buy Ticket</a>
         </div>
     </div>
 </nav>
