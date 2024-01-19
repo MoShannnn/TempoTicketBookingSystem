@@ -40,7 +40,10 @@
                 </ul>
             </div>
 
-            <a href="ticket.html" class="btn custom-btn d-lg-block d-none">Buy Ticket</a>
+            <button class="btn custom-btn d-lg-block d-none p-0">
+                <a href="{{ route('login') }}" class="btn custom-btn login-btn">Login</a>
+                <a href="{{ route('register') }}" class="btn custom-btn register-btn">Register</a>
+            </button>
         </div>
     </div>
 </nav>
