@@ -16,6 +16,8 @@
 
     <link href="{{ asset('css/templatemo-festava-live.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+
     <link rel="icon" href="/images/myLogo.png" type="image/png">
 
 

@@ -15,13 +15,14 @@ class Ticket extends Model
         'quantity',
     ];
 
-    public function users()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'tickets');
+        return $this->belongsTo(User::class);
     }
 
-    public function lives()
+    public function live()
     {
-        return $this->belongsTo(Live::class, 'tickets');
+        return $this->belongsTo(Live::class);
     }
 }
+

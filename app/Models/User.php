@@ -66,8 +66,13 @@ class User extends Authenticatable
     //     return $this->belongsToMany(Live::class, 'tickets')->withPivot('quantity')->withTimestamps();
     // }
 
+    // public function lives()
+    // {
+    //     return $this->belongsToMany(Live::class, 'tickets')->withPivot('quantity')->withTimestamps();
+    // }
+
     public function tickets()
     {
-        return $this->belongsToMany(Ticket::class, 'tickets');
+        return $this->hasMany(Ticket::class);
     }
 }

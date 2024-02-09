@@ -31,9 +31,10 @@ class LiveResource extends Resource
                 Section::make('Create a Live')
                     ->description('Create a live over here!')
                     ->schema([
-                        Forms\Components\TextInput::make('name')->required()->columnSpan('full'),
+                        Forms\Components\TextInput::make('name')->required(),
                         Forms\Components\TextInput::make('venue')->required(),
                         Forms\Components\TextInput::make('totalticket')->numeric()->required(),
+                        Forms\Components\TextInput::make('price')->numeric()->required(),
                     ])->columnSpan(2)->columns(2),
                 Group::make()->schema([
                     Section::make("Date & Time")
@@ -44,12 +45,10 @@ class LiveResource extends Resource
                         ]),
                 ]),
                 Group::make()->schema([
-                    Section::make("Related Types")
+                    Section::make("Related Artists")
                         ->collapsible()
                         ->schema([
-                            Forms\Components\CheckboxList::make('types')
-                                ->relationship('types', 'name')
-                                ->searchable()
+                            Forms\Components\FileUpload::make('liveImg')->required()->columnSpan('full'),
                         ])->columnSpan(2)->columns(2),
                     Section::make("Related Artists")
                         ->collapsible()
@@ -57,8 +56,18 @@ class LiveResource extends Resource
                             Forms\Components\CheckboxList::make('artists')
                                 ->relationship('artists', 'name')
                                 ->searchable()
+                        ])->columnSpan(2)->columns(2),                  
+                ])->columnSpan(2)->columns(2),
+                Group::make()->schema([
+                    Section::make("Related Types")
+                        ->collapsible()
+                        ->schema([
+                            Forms\Components\CheckboxList::make('types')
+                                ->relationship('types', 'name')
+                                ->searchable()
                         ])->columnSpan(2)->columns(2),
-                ])->columnSpan(4)->columns(4),
+                    
+                ])->columnSpan(1)->columns(1),
             ])->columns([
                 'default' => 3,
                 'sm' => 3,
@@ -73,6 +82,7 @@ class LiveResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->toggleable(isToggledHiddenByDefault:true),
+                Tables\Columns\ImageColumn::make('liveImg'),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->toggleable(),
@@ -86,6 +96,8 @@ class LiveResource extends Resource
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('totalticket')
                     ->numeric()
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('price')
                     ->toggleable(),
             ])
             ->filters([

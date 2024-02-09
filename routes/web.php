@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\checkUserRole;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,7 @@ use App\Http\Middleware\checkUserRole;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [TicketController::class, 'index']);
 
 Route::middleware([
     'auth:sanctum', 'checkUserRole',

@@ -26,9 +26,9 @@ class TicketResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('user_id')
-                                ->relationship('users', 'name'),
+                                ->relationship('user', 'name'),
                 Forms\Components\Select::make('live_id')
-                                ->relationship('lives', 'name'),
+                                ->relationship('live', 'name'),
                 Forms\Components\TextInput::make('quantity')->numeric(),
             ]);
     }
@@ -37,16 +37,37 @@ class TicketResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('users.email'),
-                Tables\Columns\TextColumn::make('lives.name'),
-                Tables\Columns\TextColumn::make('quantity'),
+                Tables\Columns\TextColumn::make('id')
+                    ->toggleable(),
+                Tables\Columns\ImageColumn::make('live.liveImg'),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label('Username')
+                    ->searchable()
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('live.name')
+                    ->label('Live Name')
+                    ->searchable()
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('live.venue')
+                    ->label('Venue')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('live.date')
+                    ->label('Date')
+                    ->date('j F, Y')
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('live.time')
+                    ->label('Time')
+                    ->time('H:i')
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('quantity')
+                    ->toggleable(),
                 // Tables\Columns\DateColumn::make('created_at'),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                // Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

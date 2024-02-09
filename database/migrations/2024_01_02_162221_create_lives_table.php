@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('lives', function (Blueprint $table) {
             $table->id();
+            $table->string('liveImg');
             $table->string('name');
             $table->string('venue');
-            $table->datetime('date');
+            $table->date('date');
             $table->time('time');
+            $table->integer('price');
             $table->integer('totalticket');
             $table->timestamps();
         });

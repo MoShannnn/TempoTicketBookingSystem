@@ -12,17 +12,19 @@ class Live extends Model
     use HasFactory;
 
     protected $fillable = [
+        'liveImg',
         'name',
         'venue',
         'date',
         'time',
         'totalticket',
+        'price',
     ];
 
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'tickets')->withPivot('quantity')->withTimestamps();
-    }
+    // public function users()
+    // {
+    //     return $this->belongsToMany(User::class, 'tickets')->withPivot('quantity')->withTimestamps();
+    // }
 
     public function types(){
         return $this->belongsToMany(Type::class, 'type_lives')->withTimeStamps();
@@ -34,6 +36,6 @@ class Live extends Model
 
     public function tickets()
     {
-        return $this->belongsToMany(Ticket::class, 'tickets');
+        return $this->hasMany(Ticket::class);
     }
 }
