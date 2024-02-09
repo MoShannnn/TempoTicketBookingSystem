@@ -16,6 +16,9 @@
 
     <link href="{{ asset('css/templatemo-festava-live.css') }}" rel="stylesheet">
 
+    <link rel="icon" href="/images/myLogo.png" type="image/png">
+
+
 </head>
 <body>
     @include('elements.navbar')

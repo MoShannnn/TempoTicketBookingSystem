@@ -2,36 +2,32 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\LiveResource\Pages;
+use App\Filament\Resources\LiveResource\RelationManagers;
+use App\Models\Live;
 use Filament\Forms;
-use App\Models\User;
-use Filament\Tables;
 use Filament\Forms\Form;
-use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Illuminate\Support\Facades\Hash;
+use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\UserResource\RelationManagers;
 
-class UserResource extends Resource
+class LiveResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Live::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationIcon = 'heroicon-o-musical-note';
 
-    protected static ?string $navigationGroup = 'User Management';
+    protected static ?string $navigationGroup = 'Live Management';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')->required(),
-                Forms\Components\TextInput::make('email')->email()->required(),
-                Forms\Components\TextInput::make('role')->required(),
-                Forms\Components\TextInput::make('password')
-                                        ->password()
-                                        ->dehydrateStateUsing(fn ($state) => Hash::make($state)),
+                Forms\Components\TextInput::make('venue')->required(),
+                Forms\Components\DateTimePicker::make('date')->required(),
             ]);
     }
 
@@ -40,8 +36,8 @@ class UserResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('role'),
+                Tables\Columns\TextColumn::make('venue'),
+                Tables\Columns\TextColumn::make('date')->datetime(),
             ])
             ->filters([
                 //
@@ -67,9 +63,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListLives::route('/'),
+            'create' => Pages\CreateLive::route('/create'),
+            'edit' => Pages\EditLive::route('/{record}/edit'),
         ];
     }
 }

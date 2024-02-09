@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('concert_id');
+            $table->foreignId('live_id');
             $table->integer('quantity');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('concert_id')->references('id')->on('concerts');
+            $table->foreign('live_id')->references('id')->on('lives');
         });
     }
 

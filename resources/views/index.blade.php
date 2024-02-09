@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('title', "Home")
 @section('content')
 <section class="hero-section" id="section_1">
     <div class="section-overlay"></div>
@@ -347,8 +348,8 @@
                         <li class="pricing-list-item">standard content</li>
                     </ul>
 
-                    <a class="link-fx-1 color-contrast-higher mt-4" href="ticket.html">
-                        <span>Buy Ticket</span>
+                    <a class="link-fx-1 color-contrast-higher mt-4" href="{{ route('login') }}">
+                        <span>Login</span>
                         <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
                             <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="16" cy="16" r="15.5"></circle>
@@ -382,8 +383,8 @@
                         <li class="pricing-list-item">live chat support</li>
                     </ul>
 
-                    <a class="link-fx-1 color-contrast-higher mt-4" href="ticket.html">
-                        <span>Buy Ticket</span>
+                    <a class="link-fx-1 color-contrast-higher mt-4" href="{{ route('login') }}">
+                        <span>Login</span>
                         <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
                             <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="16" cy="16" r="15.5"></circle>

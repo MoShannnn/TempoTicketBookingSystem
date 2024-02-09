@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('artists', function (Blueprint $table) {
+        Schema::create('type_lives', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('age');
-            $table->string('profileImg');
-            $table->string('intro');
-            $table->string('achievements');
+            $table->foreignId('type_id');
+            $table->foreignId('live_id');
             $table->timestamps();
+            $table->foreign('type_id')->references('id')->on('types');
+            $table->foreign('live_id')->references('id')->on('lives');
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('artists');
+        Schema::dropIfExists('type_lives');
     }
 };
