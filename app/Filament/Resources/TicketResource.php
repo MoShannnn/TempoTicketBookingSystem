@@ -19,13 +19,17 @@ class TicketResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-ticket';
 
-    protected static ?string $navigationGroup = 'Ticket Booking Management';
+    protected static ?string $navigationGroup = 'Ticket Management';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('user_id')
+                                ->relationship('users', 'name'),
+                Forms\Components\Select::make('live_id')
+                                ->relationship('lives', 'name'),
+                Forms\Components\TextInput::make('quantity')->numeric(),
             ]);
     }
 
@@ -33,8 +37,8 @@ class TicketResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id'),
-                Tables\Columns\TextColumn::make('live_id'),
+                Tables\Columns\TextColumn::make('users.email'),
+                Tables\Columns\TextColumn::make('lives.name'),
                 Tables\Columns\TextColumn::make('quantity'),
                 // Tables\Columns\DateColumn::make('created_at'),
             ])

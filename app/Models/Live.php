@@ -15,14 +15,25 @@ class Live extends Model
         'name',
         'venue',
         'date',
+        'time',
+        'totalticket',
     ];
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'tickets')->withTimestamps();
+        return $this->belongsToMany(User::class, 'tickets')->withPivot('quantity')->withTimestamps();
     }
 
     public function types(){
         return $this->belongsToMany(Type::class, 'type_lives')->withTimeStamps();
+    }
+
+    public function artists(){
+        return $this->belongsToMany(Artist::class, 'artist_lives')->withTimeStamps();
+    }
+
+    public function tickets()
+    {
+        return $this->belongsToMany(Ticket::class, 'tickets');
     }
 }

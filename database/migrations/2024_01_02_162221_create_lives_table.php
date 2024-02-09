@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('lives', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('venue')->nullable();
-            $table->datetime('date')->nullable();
+            $table->string('name');
+            $table->string('venue');
+            $table->datetime('date');
+            $table->time('time');
+            $table->integer('totalticket');
             $table->timestamps();
         });
     }

@@ -61,8 +61,13 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function lives()
+    // public function lives()
+    // {
+    //     return $this->belongsToMany(Live::class, 'tickets')->withPivot('quantity')->withTimestamps();
+    // }
+
+    public function tickets()
     {
-        return $this->belongsToMany(Live::class, 'tickets')->withTimestamps();
+        return $this->belongsToMany(Ticket::class, 'tickets');
     }
 }

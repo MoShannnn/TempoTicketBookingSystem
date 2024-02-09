@@ -20,7 +20,7 @@ class ArtistResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-circle';
 
-    protected static ?string $navigationGroup = 'Artists Management';
+    protected static ?string $navigationGroup = 'Live Management';
     
     public static function form(Form $form): Form
     {

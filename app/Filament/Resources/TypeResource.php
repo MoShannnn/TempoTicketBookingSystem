@@ -2,16 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\TypeResource\Pages;
-use App\Filament\Resources\TypeResource\RelationManagers;
-use App\Models\Type;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\Type;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
+use Filament\Resources\Resource;
+// use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\TypeResource\Pages;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\Summarizers\Count;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\TypeResource\RelationManagers;
+use App\Filament\Resources\TypeResource\RelationManagers\LivesRelationManager;
 
 class TypeResource extends Resource
 {
@@ -34,6 +38,10 @@ class TypeResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('lives_count')
+                    ->label('Related Lives')
+                    ->counts('lives')
+                    ->numeric(),
             ])
             ->filters([
                 //
@@ -52,7 +60,7 @@ class TypeResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            LivesRelationManager::class
         ];
     }
 

@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\LiveSeeder;
 use Database\Seeders\TypeSeeder;
+use Database\Seeders\ArtistSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TypeSeeder::class,
             LiveSeeder::class,
+            ArtistSeeder::class,
         ]);
     }
 }
