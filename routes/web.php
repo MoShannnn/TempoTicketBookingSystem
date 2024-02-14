@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\checkUserRole;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +16,20 @@ use App\Http\Controllers\TicketController;
 |
 */
 
-Route::get('/', [TicketController::class, 'index']);
+Route::get('/', [TicketController::class, 'index'])
+    ->name('index');
+
+Route::get('ticket/create/{live}', [TicketController::class, 'create'])
+    ->name('ticket.create');
+
+Route::post('ticket/store/{live}', [TicketController::class, 'store'])
+    ->name('ticket.store');
 
 Route::middleware([
     'auth:sanctum', 'checkUserRole',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
 });

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('live_id');
             $table->integer('quantity');
+            $table->integer('total_price');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('live_id')->references('id')->on('lives');

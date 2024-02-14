@@ -13,6 +13,7 @@ class Ticket extends Model
         'user_id',
         'live_id',
         'quantity',
+        'total_price',
     ];
 
     public function user()

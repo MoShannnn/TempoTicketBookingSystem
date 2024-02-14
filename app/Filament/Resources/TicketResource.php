@@ -30,6 +30,7 @@ class TicketResource extends Resource
                 Forms\Components\Select::make('live_id')
                                 ->relationship('live', 'name'),
                 Forms\Components\TextInput::make('quantity')->numeric(),
+                Forms\Components\TextInput::make('total_price')->numeric(),
             ]);
     }
 
@@ -61,13 +62,15 @@ class TicketResource extends Resource
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('quantity')
                     ->toggleable(),
+                Tables\Columns\TextColumn::make('total_price')
+                    ->toggleable(),
                 // Tables\Columns\DateColumn::make('created_at'),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                // Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

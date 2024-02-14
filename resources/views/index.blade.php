@@ -74,33 +74,37 @@
                 <h2 class="text-center mb-4">Get your Ticket</h2>
             </div>
 
-            @foreach($tickets as $ticket)
+            @foreach($lives as $live)
                 <div class="col-lg-4 col-12 mb-4">
                     <div class="pricing-thumb p-4">
                         <div class="d-flex">
                             <div class="mt-2">
-                                <h3><small>{{ $ticket->name }}</small> ${{ $ticket->price }}</h3>
+                                <h3><small>{{ $live->name }}</small> ${{ $live->price }}</h3>
 
-                                <p>Including good things:</p>
                             </div>
                             <p class="pricing-tag ms-auto">
-                            <img src="{{ asset("storage/$ticket->liveImg") }}" alt="">
+                                <img src="{{ asset("storage/$live->liveImg") }}" alt="">
                             </p>
                         </div>
 
                         <ul class="pricing-list mt-3">
-                            <li class="pricing-list-item">Venue - {{ $ticket->venue }}</li>
+                            <li class="pricing-list-item">Venue - {{ $live->venue }}</li>
 
-                            <li class="pricing-list-item">Date - {{ \Carbon\Carbon::parse($ticket->date)->isoFormat('DD MMMM, YYYY') }}</li>
+                            <li class="pricing-list-item">Date - {{ \Carbon\Carbon::parse($live->date)->isoFormat('DD MMMM, YYYY') }}</li>
 
-                            <li class="pricing-list-item">Time - {{ $ticket->time }}</li>
+                            <li class="pricing-list-item">Time - {{ $live->time }}</li>
 
                         </ul>
 
-                        <a class="btn link-fx-1 color-contrast-higher mt-4" href="{{ route('login') }}">
-                            <span>
+                        <a class="btn link-fx-1 color-contrast-higher mt-4" 
+                            @if(auth()->check())
+                                href="{{ route('ticket.create', $live->id) }}"
+                            @else
+                                href="{{ route('login') }}"
+                            @endif>
+                            <span class="ticket-icon">
                                 Get  
-                                <i class="bi bi-ticket-perforated" style="color: #F8CB2E"></i>
+                                <i class="bi bi-ticket-perforated"></i>
                             </span>
                             <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
                                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -114,6 +118,42 @@
                     </div>
                 </div>
             @endforeach
+
+            <!-- Modal -->
+            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Get your Ticket</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <h5>Selected Live Details:</h5>
+                <p><strong>Name:</strong> <span id="liveName"></span></p>
+
+                        <hr>
+
+                        <form action="" method="POST">
+                            @csrf
+                            <input type="hidden" name="live_id" id="liveId">
+                            <div class="mb-3">
+                                <label for="quantity" class="form-label">Select Quantity:</label>
+                                <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1">
+                            </div>
+
+                            <p><strong>Total Price:</strong> $<span id="totalPrice"></span></p>
+
+                            <button type="submit" class="btn btn-primary">Purchase Ticket</button>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+            </div> -->
 
         </div>
     </div>
@@ -146,8 +186,8 @@
                             </p>
 
                             <p>
-                                <strong>Music:</strong>
-                                Country
+                                <strong>Achievements</strong>
+                                {{ $artist-> achievements }}
                             </p>
 
                             <hr>
@@ -155,10 +195,6 @@
                             <p class="mb-0">
                                 <strong>Bio:</strong>
                                 <a href="#">{{ $artist-> intro }}</a>
-                            </p>
-                            <p class="mb-0">
-                                <strong>Achievements:</strong>
-                                <a href="#">{{ $artist-> achievements }}</a>
                             </p>
                         </div>
                     </div>
@@ -285,4 +321,5 @@
         </div>
     </div>
 </section>
+
 @endsection

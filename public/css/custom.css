@@ -3,3 +3,11 @@
     height: 145px;
     border-radius: 50%;
 }
+
+.create-pricing-tag img {
+    width: 200px; 
+    height: 200px;
+}
+/* .record-table{
+    margin: 50px 70px !important;
+} */

@@ -761,21 +761,26 @@ strong {
   width: 150px;
   height: 150px;
   position: absolute;
+  border-radius: 50%;
   top: 0;
   right: 0;
-  margin: 120px 20px;
+  margin: 100px 20px;
 }
 
+.create-pricing-tag {
+  width: 210px;
+  height: 210px;
+}
 .pricing-tag span {
   font-size: 180%;
   line-height: normal;
 }
 
-.pricing-thumb .link-fx-1 {
+.link-fx-1, .link-fx-1 .ticket-icon {
   color: var(--primary-color);
 }
 
-.pricing-thumb .link-fx-1:hover {
+.link-fx-1:hover, .link-fx-1 .ticket-icon:hover {
   color: var(--link-hover-color);
 }
 
