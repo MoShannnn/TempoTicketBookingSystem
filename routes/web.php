@@ -19,12 +19,6 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', [TicketController::class, 'index'])
     ->name('index');
 
-Route::get('ticket/create/{live}', [TicketController::class, 'create'])
-    ->name('ticket.create');
-
-Route::post('ticket/store/{live}', [TicketController::class, 'store'])
-    ->name('ticket.store');
-
 Route::middleware([
     'auth:sanctum', 'checkUserRole',
     config('jetstream.auth_session'),
@@ -32,4 +26,8 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
+    Route::get('ticket/create/{live}', [TicketController::class, 'create'])
+        ->name('ticket.create');
+    Route::post('ticket/store/{live}', [TicketController::class, 'store'])
+        ->name('ticket.store');
 });

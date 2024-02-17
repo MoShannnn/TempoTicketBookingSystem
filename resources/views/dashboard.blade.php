@@ -21,7 +21,7 @@
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight" style="margin: 20px;">Purchasing History</h2>
 
                 <div class="py-2 m-5">
-                    @if($tickets === !null)
+                    @if($tickets->isNotEmpty())
                         <table class="table record-table mx-auto">
                             <thead>
                                 <tr>

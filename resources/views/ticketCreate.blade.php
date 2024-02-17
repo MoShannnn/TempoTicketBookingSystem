@@ -8,6 +8,7 @@
         <div class="alert alert-success solid alert-dismissible mx-4 mb-0 mt-3 fade show success-info">
             <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
                 {{ session('success') }}
+            Go back to <a href="{{ route('index') }}">Home Page</a>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
             </button>
         </div>
@@ -44,11 +45,12 @@
                         @csrf
                         <div class="mb-3">
                             <label for="quantity" class="form-label">Quantity</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity">
+                            <input type="number" class="form-control" id="quantity" name="quantity" oninput="calculateTotalPrice()">
                         </div>
                         <div class="mb-3">
-                            <label for="total_price" class="form-label">Total Price</label>
-                            <input type="number" class="form-control" id="total_price" name="total_price">
+                            <label for="total_price" class="form-label">Total Price - </label>
+                            <span id="total_price1" class="total_price"></span>
+                            <input type="hidden" class="form-control" id="total_price" name="total_price">
                         </div>
                         <button type="submit" class="btn btn-secondary p-2">
                             Get Ticket
@@ -57,22 +59,21 @@
 
                 </div>
             </div>
-
-
         </div>
     </div>
 </section>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-    var quantity = document.getElementById("quantity");
-    console.log(quantity.value);
-    var totalPrice = document.getElementById("total_price");
-
-    quantity.addEventListener('input', calculateTotalPrice);
-
     function calculateTotalPrice() {
-      totalPrice.textContent = quantity.value;
+        // Get the quantity and price values
+        var quantity = document.getElementById('quantity').value;
+        var price = {{ $selectedLive->price }}
+
+        // Calculate the total price
+        var totalPrice = quantity * price;
+
+        // Update the total price input field
+        document.getElementById('total_price1').innerHTML = '$' + totalPrice;
+        document.getElementById('total_price').value = totalPrice;
     }
-});
 </script>
 @endsection

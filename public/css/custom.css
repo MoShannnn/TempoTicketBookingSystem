@@ -8,6 +8,11 @@
     width: 200px; 
     height: 200px;
 }
+
+.total_price{
+    font-size: larger;
+    font-weight: bold;
+}
 /* .record-table{
     margin: 50px 70px !important;
 } */
