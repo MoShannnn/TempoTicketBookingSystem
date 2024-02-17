@@ -9,7 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="py-12">
-                    <h2 class="font-semibold text-xl text-gray-800 leading-tight" style="margin: 20px;">Welcome Dear {{ $user->name }}, </h2>
+                    <h2 class="font-semibold text-xl text-gray-800 leading-tight" style="margin: 20px;">Welcome Dear {{ $user->name }}, 
+                    Go to<a href="{{route('index')}}" class="text-success"> HomePage</a></h2>
                 </div>
             </div>
         </div>
