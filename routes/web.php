@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\checkUserRole;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DownloadPdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +32,5 @@ Route::middleware([
     Route::post('ticket/store/{live}', [TicketController::class, 'store'])
         ->name('ticket.store');
 });
+
+Route::get('/{record}/pdf/download', [DownloadPdfController::Class, 'download'])->name('ticket.pdf.download');

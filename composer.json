@@ -17,6 +17,7 @@
         "laravel/jetstream": "^4.2",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "laraveldaily/laravel-invoices": "^3.3",
         "livewire/livewire": "^3.0"
     },
     "require-dev": {
