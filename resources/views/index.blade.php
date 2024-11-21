@@ -171,7 +171,7 @@
                 <div class="col-lg-5 col-12">
                     <div class="artists-thumb">
                         <div class="artists-image-wrap">
-                            <img src="{{ asset("storage/$artist->profileImg") }}" class="artists-image img-fluid">
+                            <img src="{{ Storage::exists("storage/$artist->profileImg") ? asset("storage/$artist->profileImg") : asset("images/artists/$artist->profileImg") }}" class="artists-image img-fluid">
                         </div>
 
                         <div class="artists-hover">
