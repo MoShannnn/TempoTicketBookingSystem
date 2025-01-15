@@ -14,17 +14,17 @@ class StatsOverview extends BaseWidget
     {
         return [
             Stat::make('Users', User::query()->count())
-            ->description('All users from the database')
-            ->descriptionIcon('heroicon-m-arrow-trending-up')
-            ->color('success'),
-        Stat::make('Artists', Artist::query()->count())
-            ->description('All artists from the database')
-            ->descriptionIcon('heroicon-m-arrow-trending-up')
-            ->color('success'),
-        Stat::make('Types', Type::query()->count())
-            ->description('All types from the database')
-            ->descriptionIcon('heroicon-m-arrow-trending-up')
-            ->color('success'),
+                ->description('All users from the database')
+                ->descriptionIcon('heroicon-m-arrow-trending-up')
+                ->color('success'),
+            Stat::make('Artists', Artist::query()->count())
+                ->description('All artists from the database')
+                ->descriptionIcon('heroicon-m-arrow-trending-up')
+                ->color('success'),
+            Stat::make('Types', Type::query()->count())
+                ->description('All types from the database')
+                ->descriptionIcon('heroicon-m-arrow-trending-up')
+                ->color('success'),
 
         ];
     }

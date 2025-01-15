@@ -33,4 +33,4 @@ Route::middleware([
         ->name('ticket.store');
 });
 
-Route::get('/{record}/pdf/download', [DownloadPdfController::Class, 'download'])->name('ticket.pdf.download');
+Route::get('/{record}/pdf/download', [DownloadPdfController::class, 'download'])->name('ticket.pdf.download');
